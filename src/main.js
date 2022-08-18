@@ -2,9 +2,12 @@ import Web3 from "web3";
 import { newKitFromWeb3 } from "@celo/contractkit";
 import BigNumber from "bignumber.js";
 import marketplaceAbi from "../contract/mmarketplace.abi.json";
+import erc20Abi from "../contract/erc20.abi.json";
 
 const ERC20_DECIMALS = 18;
 const MPContractAddress = "0x2D6AA6ca19071514Ac96cE5F978c0cc7d8e18713";
+// cUSD smart contract address
+const cUSDContractAddress = "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1";
 
 let kit;
 let contract;
@@ -50,7 +53,7 @@ async function getProducts() {
   const _products = [];
   for (let i = 0; i < productsCount; i++) {
     let _product = new Promise(async (resolve, reject) => {
-      let p = await contract.methods.readProduct(i).call();
+      let p = await contract.methods.products(i).call();
       resolve({
         index: i,
         owner: p[0],
@@ -137,6 +140,17 @@ function notificationOff() {
   document.querySelector(".alert").style.display = "none";
 }
 
+// inform cUSD contract about the current transaction
+async function approve(price) {
+  const cUSDContract = new kit.web3.eth.Contract(erc20Abi, cUSDContractAddress);
+
+  const response = await cUSDContract.methods
+    .approve(MPContractAddress, price)
+    .send({ from: kit.defaultAccount });
+
+  return response;
+}
+
 window.addEventListener("load", async () => {
   notification("⌛ Loading...");
   await connectCeloWallet();
@@ -162,19 +176,38 @@ document
       const result = await contract.methods
         .createProduct(...params)
         .send({ from: kit.defaultAccount });
+      notification(`🎉 You successfully added "${params[0]}".`);
+      getProducts();
     } catch (error) {
       notification(`⚠️ ${error}.`);
     }
-    notification(`🎉 You successfully added "${params[0]}".`);
-    getProducts();
   });
 
-document.querySelector("#marketplace").addEventListener("click", (e) => {
+document.querySelector("#marketplace").addEventListener("click", async (e) => {
   if (e.target.className.includes("buyBtn")) {
     const index = e.target.id;
-    console.log("index: ", index);
-    products[index].sold++;
-    notification(`🎉 You successfully bought "${products[index].name}".`);
-    renderProducts();
+    console.log("index: ", index, products[index]);
+
+    notification("⌛ Waiting for payment approval...");
+
+    try {
+      await approve(products[index].price);
+    } catch (error) {
+      notification(`⚠️ ${error}.`);
+    }
+
+    notification(`⌛ Awaiting payment for "${products[index].name}"...`);
+
+    try {
+      const response = await contract.methods
+        .buyProduct(index)
+        .send({ from: kit.defaultAccount });
+
+      notification(`🎉 You successfully bought "${products[index].name}".`);
+      getProducts();
+      getBalance();
+    } catch (error) {
+      notification(`⚠️ ${error}.`);
+    }
   }
 });
