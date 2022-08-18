@@ -1,37 +1,56 @@
-## Welcome to GitHub Pages
+# My Smart Marketplace DApp
 
-You can use the [editor on GitHub](https://github.com/DanielGraham123/smart-marketplace/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+This project uses the Celo Blockchain toolkit and Web3 to allow people buy or sell products.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+It's still a very basic project and is a project example from [Dacade](https://dacade.org/communities/celo/courses/celo-development-101).
 
-### Markdown
+## Demo
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<img src="../Celo SmartMarketPlace Demo.gif" alt="Celo SmartMarketPlace Demo gif">
 
-```markdown
-Syntax highlighted code block
+## Warning!!!
 
-# Header 1
-## Header 2
-### Header 3
+This is a **modified** clone from the [Dacade's](https://github.com/dacadeorg/celo-marketplace-dapp) Marketplace DApp example.
 
-- Bulleted
-- List
+That's to say, in case you find any issue in running the Dacade's Marketplace DApp from their course, you can always use this project to get back on track.
 
-1. Numbered
-2. List
+Enjoy!
 
-**Bold** and _Italic_ and `Code` text
+## Install
 
-[Link](url) and ![Image](src)
 ```
 
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
+npm install
 
-### Jekyll Themes
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/DanielGraham123/smart-marketplace/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+or
 
-### Support or Contact
+```
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+yarn install
+
+```
+
+## Start
+
+```
+
+npm run dev
+
+```
+
+## Build
+
+```
+
+npm run build
+
+```
+
+# Usage
+
+1. Install the [CeloExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from the google chrome store.
+2. Create a wallet.
+3. Go to [https://celo.org/developers/faucet](https://celo.org/developers/faucet) and get tokens for the alfajores testnet.
+4. Switch to the alfajores testnet in the CeloExtensionWallet.
