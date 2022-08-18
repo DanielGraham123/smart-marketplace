@@ -2,7 +2,7 @@ import Web3 from "web3";
 import { newKitFromWeb3 } from "@celo/contractkit";
 import BigNumber from "bignumber.js";
 import marketplaceAbi from "../contract/mmarketplace.abi.json";
-import erc20Abi from "../contract/erc20.abi.json";
+import erc20Abi from "../contract/merc20.abi.json";
 
 const ERC20_DECIMALS = 18;
 const MPContractAddress = "0x2D6AA6ca19071514Ac96cE5F978c0cc7d8e18713";

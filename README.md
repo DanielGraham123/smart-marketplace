@@ -4,6 +4,10 @@ This project uses the Celo Blockchain toolkit and Web3 to allow people buy or se
 
 It's still a very basic project and is a project example from [Dacade](https://dacade.org/communities/celo/courses/celo-development-101).
 
+## Demo
+
+<img src="./Celo SmartMarketPlace Demo.gif" alt="Celo SmartMarketPlace Demo gif">
+
 ## Warning!!!
 
 This is a **modified** clone from the [Dacade's](https://github.com/dacadeorg/celo-marketplace-dapp) Marketplace DApp example.
