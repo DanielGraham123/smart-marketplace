@@ -6,7 +6,7 @@ It's still a very basic project and is a project example from [Dacade](https://d
 
 ## Demo
 
-<img src="../Celo SmartMarketPlace Demo.gif" alt="Celo SmartMarketPlace Demo gif">
+<img src="{{ "/Celo SmartMarketPlace Demo.gif" | prepend: site.baseurl | prepend: site.url}}" alt="Celo SmartMarketPlace Demo gif">
 
 ## Warning!!!
 
